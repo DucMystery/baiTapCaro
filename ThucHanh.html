@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lam Bai tap co caro</title>
+</head>
+<body onclick="checkWin()">
+<div id="caro"></div>
+<input type="button" onclick="changeValue()" value="X">
+<input type="button" onclick="changeValue1()" value="Y">
+<script>
+    let b=document.getElementById("caro");
+    let board =[];
+    let data ='';
+    for (let i=0;i<5;i++){
+        board[i]=new Array(".",".",".",".",".");
+    }
+    for (let i=0;i<5;i++){
+        data+="<br/>";
+        for (let j=0;j<5;j++){
+            data+=board[i][j]+"&nbsp;&nbsp";
+        }
+    }
+    b.innerHTML=data;
+    function changeValue() {
+        let viTriX=parseInt(prompt("X:"));
+        let viTriY=parseInt(prompt("Y:"));
+        data="";
+        board[viTriX][viTriY]="x";
+        for (let i=0;i<5;i++){
+            data+="<br/>";
+            for (let j=0;j<5;j++){
+                data+=board[i][j]+"&nbsp;&nbsp;";
+            }
+        }
+        b.innerHTML=data;
+    }
+    function changeValue1() {
+        let viTriX=parseInt(prompt("X:"));
+        let viTriY=parseInt(prompt("Y:"));
+        data="";
+        board[viTriX][viTriY]="o";
+        for (let i=0;i<5;i++){
+            data+="<br/>";
+            for (let j=0;j<5;j++){
+                data+=board[i][j]+"&nbsp;&nbsp;";
+            }
+        }
+        b.innerHTML=data;
+    }
+    function checkWin() {
+        let x="x";o="o";
+        let flag1=false; let flag4=false;
+        let flag2=false; let flag5=false;
+        let flag3=false; let flag6=false;
+        for (i=0,j=0;i<5,j<5;i++,j++){
+            if (board[i][j]===x&& board[i+1][j+1]===x && board[i+2][j+2]===x){
+                flag1=true;
+            }else if (board[i][j]===x && board[i][j+1]===x && board[i][j+2]===x){
+                flag2=true;
+            }else if (board[i][j]===x && board[i+1][j]===x && board[i+2][j]===x){
+                flag3=true;
+            }else if (board[i][j]===o && board[i+1][j+1]===x && board[i+2][j+2]===x){
+                flag4=true;
+            }else if (board[i][j]===x && board[i][j+1]===x && board[i][j+2]===x){
+                flag5=true;
+            }else if (board[i][j]===x && board[i+1][j]===x && board[i+2][j]===x){
+                flag6=true;
+            }
+        }
+        if (flag1===true||flag2===true||flag3===true){
+            alert("1st Win");
+        }else if (flag5===true|| flag4===true||flag6===true){
+            alert("2nd Win");
+        }
+    }
+</script>
+</body>
+</html>
